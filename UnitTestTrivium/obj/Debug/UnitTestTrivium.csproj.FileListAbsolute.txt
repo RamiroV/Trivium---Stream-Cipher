@@ -1,0 +1,7 @@
+C:\Users\ramiro\Documents\Visual Studio 2012\Projects\Prototipo Conversor ImgBPM\UnitTestTrivium\bin\Debug\UnitTestTrivium.dll
+C:\Users\ramiro\Documents\Visual Studio 2012\Projects\Prototipo Conversor ImgBPM\UnitTestTrivium\bin\Debug\UnitTestTrivium.pdb
+C:\Users\ramiro\Documents\Visual Studio 2012\Projects\Prototipo Conversor ImgBPM\UnitTestTrivium\bin\Debug\Prototipo Conversor ImgBPM.exe
+C:\Users\ramiro\Documents\Visual Studio 2012\Projects\Prototipo Conversor ImgBPM\UnitTestTrivium\bin\Debug\Prototipo Conversor ImgBPM.pdb
+C:\Users\ramiro\Documents\Visual Studio 2012\Projects\Prototipo Conversor ImgBPM\UnitTestTrivium\obj\Debug\UnitTestTrivium.csprojResolveAssemblyReference.cache
+C:\Users\ramiro\Documents\Visual Studio 2012\Projects\Prototipo Conversor ImgBPM\UnitTestTrivium\obj\Debug\UnitTestTrivium.dll
+C:\Users\ramiro\Documents\Visual Studio 2012\Projects\Prototipo Conversor ImgBPM\UnitTestTrivium\obj\Debug\UnitTestTrivium.pdb

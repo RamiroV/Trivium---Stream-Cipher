@@ -1,0 +1,9 @@
+c:\users\ramiro\documents\visual studio 2012\Projects\Prototipo Conversor ImgBPM\Prototipo Conversor ImgBPM\obj\Debug\Prototipo Conversor ImgBmp.csprojResolveAssemblyReference.cache
+c:\users\ramiro\documents\visual studio 2012\Projects\Prototipo Conversor ImgBPM\Prototipo Conversor ImgBPM\obj\Debug\Prototipo_Conversor_ImgBmp.Form1.resources
+c:\users\ramiro\documents\visual studio 2012\Projects\Prototipo Conversor ImgBPM\Prototipo Conversor ImgBPM\obj\Debug\Prototipo_Conversor_ImgBPM.Properties.Resources.resources
+c:\users\ramiro\documents\visual studio 2012\Projects\Prototipo Conversor ImgBPM\Prototipo Conversor ImgBPM\obj\Debug\Prototipo Conversor ImgBmp.csproj.GenerateResource.Cache
+c:\users\ramiro\documents\visual studio 2012\Projects\Prototipo Conversor ImgBPM\Prototipo Conversor ImgBPM\bin\Debug\Prototipo Conversor ImgBPM.exe.config
+c:\users\ramiro\documents\visual studio 2012\Projects\Prototipo Conversor ImgBPM\Prototipo Conversor ImgBPM\bin\Debug\Prototipo Conversor ImgBPM.exe
+c:\users\ramiro\documents\visual studio 2012\Projects\Prototipo Conversor ImgBPM\Prototipo Conversor ImgBPM\bin\Debug\Prototipo Conversor ImgBPM.pdb
+c:\users\ramiro\documents\visual studio 2012\Projects\Prototipo Conversor ImgBPM\Prototipo Conversor ImgBPM\obj\Debug\Prototipo Conversor ImgBPM.exe
+c:\users\ramiro\documents\visual studio 2012\Projects\Prototipo Conversor ImgBPM\Prototipo Conversor ImgBPM\obj\Debug\Prototipo Conversor ImgBPM.pdb
