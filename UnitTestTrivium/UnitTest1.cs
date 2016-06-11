@@ -28,7 +28,7 @@ namespace UnitTestTrivium
 
             byte[] originalStream = new byte[512];
             var bitList = main.convertToBitList(new BitArray(originalStream));
-            bitList = main.Xor(bitList, main.calculateZ(bitList.Count, main.initialState());
+            bitList = main.Xor(bitList, main.calculateZ(bitList.Count, main.initialState()));
 
             for (int i = firstByteOfDataInBMPFormat; i < result.Length; i++)
                 Assert.AreEqual(result[i], main.convertToBitArray(bitList).ToByteArray()[i]);
