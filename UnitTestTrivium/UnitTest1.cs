@@ -4,6 +4,7 @@ using System.Collections;
 using Prototipo_Conversor_ImgBmp;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Collections.Generic;
 
 
 namespace UnitTestTrivium
@@ -11,27 +12,64 @@ namespace UnitTestTrivium
     [TestClass]
     public class UnitTest1
     {
-        //[TestMethod] Arreglar esto...
-        public void TestVEctorsSet1VectorN0SFirstStream()
+        [TestMethod]
+        public void TestVEctorsSet2VectorNum0Stream0to63()
         {
-            byte[] result = { 1, 11, 14, 9, 5, 0, 9, 1, 11, 8, 14, 10, 8, 5, 7, 11, 0, 6, 2, 10, 13, 5, 2, 11, 10, 13,
-                                 15, 4, 7, 7, 8, 4, 10, 12, 6, 13, 9, 11, 2, 14, 3, 15, 8, 5, 10, 9, 13, 7, 9, 9, 9, 5,
-                                 0, 4, 3, 3, 0, 2, 15, 0, 15, 13, 15, 8, 11, 7, 6, 14, 5, 11, 12, 8, 11, 7, 11, 4, 15,
-                                 0, 10, 10, 4, 6, 12, 13, 2, 0, 13, 13, 10, 0, 4, 15, 13, 13, 1, 9, 7, 11, 12, 5, 14, 1,
-                                 6, 3, 5, 4, 9, 6, 8, 2, 8, 15, 2, 13, 11, 15, 11, 2, 3, 15, 6, 11, 13, 5, 13, 0 };
+            string result = 
+                "FBE0BF265859051B517A2E4E239FC97F" + 
+                "563203161907CF2DE7A8790FA1B2E9CD" + 
+                "F75292030268B7382B4C1A759AA2599A" + 
+                "285549986E74805903801A4CB5A5D4F2";
 
-            byte[] key = new byte[10];
-            byte[] IV = new byte[10];
+            byte[] key = new byte[10]; //0s
+            byte[] IV = new byte[10]; //0s
 
-            Form1 main = new Form1();
-            var firstByteOfDataInBMPFormat = 54;
+            byte[] input = new byte[512]; //0s
 
-            byte[] originalStream = new byte[512];
-            var bitList = main.convertToBitList(new BitArray(originalStream));
-            bitList = main.Xor(bitList, main.calculateZ(bitList.Count, main.initialState()));
+            Form1 program = new Form1();
 
-            for (int i = firstByteOfDataInBMPFormat; i < result.Length; i++)
-                Assert.AreEqual(result[i], main.convertToBitArray(bitList).ToByteArray()[i]);
+            List<bool> z = program.calculateZ(input.Length, program.initialState(key, IV));
+
+            BitArray ba = program.convertToBitArray(z);
+            byte[] byteArray = ba.ToByteArray();
+            string hexaAllZ = program.ByteArrayToHexaString(byteArray);
+
+            string hexaZTested = "";
+
+            for (int i = 0; i < 128; i++)
+                hexaZTested += hexaAllZ[i];
+
+            Assert.AreEqual(result, hexaZTested);
+        }
+
+        [TestMethod]
+        public void TestVEctorsSet1VectorNum72Stream0to63()
+        {
+            string result =
+                "5D492E77F8FE62D769C6A142056BE936" +
+                "1FA0ADD8A54601DE615EBC04C4F8B2C1" +
+                "2A8ED2DC9AB286A0F6C49C7AB319BA6A" +
+                "AFAAF0CD42D0A44C7DACBC90791855D8";
+
+            byte[] key = { 128, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            byte[] IV = new byte[10]; //0s
+
+            byte[] input = new byte[512]; //0s
+
+            Form1 program = new Form1();
+
+            List<bool> z = program.calculateZ(input.Length, program.initialState(key, IV));
+
+            BitArray ba = program.convertToBitArray(z);
+            byte[] byteArray = ba.ToByteArray();
+            string hexaAllZ = program.ByteArrayToHexaString(byteArray);
+
+            string hexaZTested = "";
+
+            for (int i = 0; i < 128; i++)
+                hexaZTested += hexaAllZ[i];
+
+            Assert.AreEqual(result, hexaZTested);
         }
     }
 }

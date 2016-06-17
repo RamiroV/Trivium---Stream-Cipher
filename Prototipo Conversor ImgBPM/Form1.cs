@@ -30,15 +30,19 @@ namespace Prototipo_Conversor_ImgBmp
             
             byte[] imgArray = image.ToByteArray(ImageFormat.Bmp);
 
+            //claves harcodeadas
+            byte[] k = { 128, 128, 128, 128, 128, 128, 128, 128, 128, 128 };
+            byte[] Iv = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
             var bitList = convertToBitList(new BitArray(imgArray));
 
-            bitList = Xor(bitList, calculateZ(bitList.Count, initialState()));
+            bitList = Xor(bitList, calculateZ(bitList.Count, initialState(k, Iv)));
 
             //Si se muestra esto, es el mensaje cifrado, se ve ruido...
             pictureBox2.Image = convertToBitArray(bitList).ToByteArray().ToImage();
 
             //Luego de generar el keystream, lo descifra, haciendo nuevamente el XOR...
-            bitList = Xor(bitList, calculateZ(bitList.Count, initialState()));
+            bitList = Xor(bitList, calculateZ(bitList.Count, initialState(k, Iv)));
 
             //debería mostrar el mensaje ya descifrado, igual al anterior...
             pictureBox3.Image = convertToBitArray(bitList).ToByteArray().ToImage();
@@ -47,17 +51,11 @@ namespace Prototipo_Conversor_ImgBmp
             //pictureBox3.Image.Save(@"C:\Users\ramiro\Pictures\Imágenes para Probar Criptografía\res.bmp", ImageFormat.Bmp);
         }
 
-        public List<bool> initialState()
+        public List<bool> initialState(byte[] key, byte[] IV)
         {
-            //Acá tiré cualquiera... (a las claves me refiero, cualquier número :) )
-            //Se puede extraer y setearle por afuera las claves que quieras
+            var keyBits = ByteToBitArrayReverse(key);
+            var IVBits = ByteToBitArrayReverse(IV);
 
-            byte[] key = { 230, 5, 113, 26, 180, 45, 15, 211, 142, 130 };
-            byte[] IV = { 123, 212, 75, 61, 10, 2, 134, 254, 123, 71 };
-
-
-            var keyBits = new BitArray(key);
-            var IVBits = new BitArray(IV);
             var s = new List<bool>();
 
             bool t1, t2, t3;
@@ -68,14 +66,14 @@ namespace Prototipo_Conversor_ImgBmp
                 s.Add(false);
             for(int i = 93; i < 173; i++)
                 s.Add(IVBits[i - 93]);
-            for (int i = 173; i < 177; i++)
+            for (int i = 173; i < 176; i++)
                 s.Add(false);
-            for(int i = 177; i < 285; i++)
+            for (int i = 176; i < 285; i++)
                 s.Add(false);
             for (int i = 285; i < 288; i++)
                 s.Add(true);
 
-            for (int i = 0; i < 4 * 288; i++)
+            for (int i = 0; i < (4 * 288); i++)
             {
                 t1 = s[65] ^ (s[90] && s[91]) ^ s[92] ^ s[170];
                 t2 = s[161] ^ (s[174] && s[175]) ^ s[176] ^ s[263];
@@ -92,9 +90,9 @@ namespace Prototipo_Conversor_ImgBmp
         {
             s.Insert(0, t3);
 
-            s.RemoveAt(92);
+            s.RemoveAt(93);
 
-            s.Insert(92, t1);
+            s.Insert(93, t1);
 
             s.RemoveAt(177);
 
@@ -166,6 +164,29 @@ namespace Prototipo_Conversor_ImgBmp
                 bits[i] = bitList[i];
 
             return bits;
+        }
+
+        public string ByteArrayToHexaString(byte[] ba)
+        {
+            string hex = BitConverter.ToString(ba);
+            return hex.Replace("-", "");
+        }
+
+        public BitArray ByteToBitArrayReverse(byte[] ba)
+        {
+            BitArray bitArray = new BitArray(ba);
+
+            for (int b = 0; b < ba.Length; b += 8)
+            {
+                for (int i = 0; i < 4; i++)
+                {
+                    var aux = bitArray[i + b];
+                    bitArray[i + b] = bitArray[7 - i + b];
+                    bitArray[7 - i + b] = aux;
+                }
+            }
+
+            return bitArray;
         }
 
         public List<bool> Xor(List<bool> aBitList, List<bool> anotherBitList)
